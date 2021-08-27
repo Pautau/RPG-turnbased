@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/game_board.css">
+    <script src="scripts/jquery-3.5.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/ba6c5d3eb5.js" crossorigin="anonymous"></script>
+    <title>Fighting...</title>
+</head>
+<body onload="generateBoard()">
+    <p class="development">En developpement depuis le 11/01/2021</p>
+    <div class="bg_img"></div>
+    <div class="board">
+        <div class="logs_background">
+            <div class="logs">
+            </div>
+            <div class="details">
+                <p class="details_name"></p>
+                <div class="details-top">
+                    <img class="details_icon" src="" alt="info"/>
+                    <p class="details_info"></p>
+                </div>
+                <div class="details_detailed"></div>
+            </div>
+            <div class="options">
+                <img src="../img/ui/cog.png" alt="options">
+            </div>
+        </div>
+
+        <div class="characters_infos">
+            <!-- PLAYER -->
+            <div class="character_infos player_infos">
+                <img src="../img/portraits/portrait_male(2).png" class="portrait player_portrait" alt="portrait">
+                <section class="vitals player_vitals">
+                    <article class="vital health">
+                        <div class="label_vital label_player label_health label_player_health">
+                            <p>Health</p>
+                        </div>
+                        <div class="max_bar max_health player_max_health">
+                            <div class="int_vital">
+                                <p id="int_player_health"></p>
+                            </div>
+                            <div id='player_current_health' class="current_bar current_health"></div>
+                        </div>
+                    </article>
+                    <article class="vital stamina">
+                        <div class="label_vital label_player label_stamina label_player_stamina">
+                            <p>Stam.</p>
+                        </div>
+                        <div class="max_bar max_stamina player_max_stamina">
+                            <div class="int_vital">
+                                <p id="int_player_stamina"></p>
+                            </div>
+                            <div id='player_current_stamina' class="current_bar current_stamina"></div>
+                        </div>
+                    </article>
+                    <article class="vital mana">
+                        <div class="label_vital label_player label_mana label_player_mana">
+                            <p>Mana</p>
+                        </div>
+                        <div class="max_bar max_mana player_max_mana">
+                            <div class="int_vital">
+                                <p id="int_player_mana"></p>
+                            </div>
+                            <div id='player_current_mana' class="current_bar current_mana"></div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <div class="combat_menu">
+                <div><p class="turn_info">Your turn</p></div>
+                <button class="combat_button inspect_btn" data-type="Support" data-number="7" data-name="Inspect" data-img="../img/icons/skills/inspect.png"><i class='fas fa-caret-right'></i> Inspect</button>
+                <button class="combat_button pass_btn" data-type="Support" data-number="6" data-name="Skip" data-img="../img/icons/skills/skip.png"><i class='fas fa-caret-right'></i> Skip</button>
+                <button class="combat_button flee_btn" data-type="Defensive" data-number="8" data-name="Flee" data-img="../img/icons/skills/flee.png"><i class='fas fa-caret-right'></i> Flee</button>
+            </div>
+
+            <!-- ENEMY -->
+            <div class="character_infos enemy_infos">
+                <img src="../img/portraits/portrait_male(1).png" class="portrait enemy_portrait" alt="portrait">
+                <section class="vitals enemy_vitals">
+                    <article class="vital health">
+                        <div class="label_vital label_enemy label_health label_enemy_health">
+                            <p>Health</p>
+                        </div>
+                        <div class="max_bar max_health enemy_max_health">
+                            <div class="int_vital">
+                                <p id="int_enemy_health"></p>
+                            </div>
+                            <div id='enemy_current_health' class="current_bar current_health"></div>
+                        </div>
+                    </article>
+                    <article class="vital stamina">
+                        <div class="label_vital label_enemy label_stamina label_enemy_stamina">
+                            <p>Stam.</p>
+                        </div>
+                        <div class="max_bar max_stamina enemy_max_stamina">
+                            <div class="int_vital">
+                                <p id="int_enemy_stamina"></p>
+                            </div>
+                            <div id='enemy_current_stamina' class="current_bar current_stamina"></div>
+                        </div>
+                    </article>
+                    <article class="vital mana">
+                        <div class="label_vital label_enemy label_mana label_enemy_mana">
+                            <p>Mana</p>
+                        </div>
+                        <div class="max_bar max_mana enemy_max_mana">
+                            <div class="int_vital">
+                                <p id="int_enemy_mana"></p>
+                            </div>
+                            <div id='enemy_current_mana' class="current_bar current_mana"></div>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </div>
+        <div class="skills">
+            <p class="skillsBarLabel"> Skills </p>
+        </div>
+    </div>
+    <script src="scripts/game.js" crossorigin="anonymous"></script>
+    <script src="scripts/SkillsClass.js" crossorigin="anonymous"></script>
+    <script src="scripts/CharacterClass.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+@font-face {
+  font-family: 'silkscreennormal';
+  src: url('../font/silkscreen_normal_macroman/slkscr-webfont.eot');
+  src: url('../font/silkscreen_normal_macroman/slkscr-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../font/silkscreen_normal_macroman/slkscr-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sh_pinscherregular';
+  src: url('../font/sh_pinscherregular/shpinscher-regular-webfont.woff2') format('woff2'),
+  url('../font/sh_pinscherregular/shpinscher-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'silkscreennormal', -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+  "Helvetica Neue", Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-decoration: none;
+  color: #D2DADA;
+}
+
+ul, li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-size: 1em;
+  margin: 0;
+  background-image: url("../img/bg/landscape_4_blur.png");
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* MENU */
+
+nav {
+  padding: 0.5em;
+  font-size: 1.25em;
+  background-color: rgba(6, 7, 13, 0.7);
+  text-align: center;
+}
+
+a {
+  border: solid transparent 0;
+  box-sizing: border-box;
+  margin-right: 2em;
+  transition: all 100ms ease-in;
+}
+
+a:hover {
+  border-bottom: solid #62b379 3px;
+}
+
+/* Jeu */
+
+main {
+  margin-top: 2.5%;
+  display: flex;
+  justify-content: center;
+  height: 80%;
+}
+
+.game {
+  width: 80%;
+}
+
+/* - Affichage haut */
+.display_top {
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-image: url("../img/bg/landscape_4.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 200%;
+  border: rgba(6, 7, 13, 0.9) solid 3px;
+  border-bottom-width: 2px;
+  box-sizing: border-box;
+  padding-bottom: 1em;
+}
+
+/* --- Health Stamina Magicka */
+.health_stamina_magicka {
+  border: solid rgba(6, 7, 13, 0.7) 2px;
+  box-sizing: border-box;
+  font-size: 1.9vh;
+  background-color: rgba(6, 7, 13, 0.4);
+}
+
+/* ---- Health */
+.enemy_total_health, .player_total_health {
+  width: 100%;
+  height: 30%;
+  border-bottom: solid rgba(6, 7, 13, 0.7) 1px;
+  background-color: rgba(6, 7, 13, 0.5);
+}
+
+.enemy_current_health, .player_current_health{
+  background-color: rgba(230, 57, 70, 0.9);
+  background-image: url("../img/icons/stats/health.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: left;
+  border-right: solid 1px rgb(137, 37, 45);
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Stamina */
+.enemy_total_stamina, .player_total_stamina {
+  width: 100%;
+  height: 30%;
+  border-bottom: solid rgba(6, 7, 13, 0.7) 1px;
+  background-color: rgba(6, 7, 13, 0.5);
+}
+
+.enemy_current_stamina, .player_current_stamina{
+  background-color: rgba(230, 155, 57, 0.9);
+  background-image: url("../img/icons/stats/stamina.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: left;
+  border-right: solid 1px rgb(155, 103, 39);
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Magicka */
+.enemy_total_magicka, .player_total_magicka {
+  width: 100%;
+  height: 30%;
+  background-color: rgba(6, 7, 13, 0.5);
+}
+
+.enemy_current_magicka, .player_current_magicka{
+  background-color: rgba(57,123,230,0.9);
+  background-image: url("../img/icons/stats/magicka.png");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: left;
+  border-right: solid 1px rgb(155, 103, 39);
+  width: 100%;
+  height: 100%;
+}
+
+
+/* -- Characters */
+.portrait {
+  height: 20vh;
+  padding-top: 1vh;
+}
+
+.portrait img {
+  height: 100%;
+  align-self: flex-end;
+}
+
+.enemy {
+  transform: scaleX(-1);
+}
+
+
+/* --- Name */
+.enemy_name, .player_name {
+  text-shadow: 1px 1px 1px #000;
+  color: #fff;
+  text-align: center;
+  font-size: 3vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* - Affichage bas */
+
+.display_bot {
+  display: flex;
+  width: 100%;
+  height: 50%;
+  border: rgba(6, 7, 13, 0.9) solid 3px;
+  border-top: none;
+  box-sizing: border-box;
+}
+
+.controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 60%;
+  height: 100%;
+}
+
+/* -- Controls */
+
+.controls_menu{
+  display: flex;
+  justify-content: center;
+  height: 1.5em;
+}
+
+.controls_menu li {
+  margin-right: 1em;
+  transition: all 100ms;
+  border-bottom: solid transparent 0px;
+}
+
+.controls_menu li:hover {
+  border-bottom: solid #62b379 3px;
+}
+
+article {
+  height: 100%;
+  width: 100%;
+}
+
+/* --- Skills */
+
+.skills {
+  padding: 2.5%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.skill p:nth-child(0), .skill p:nth-child(1), .skill p:nth-child(2)   {
+  padding: 0 1%;
+}
+
+.skill {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 15%;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1%;
+  border: rgba(6, 7, 13, 0.9) solid 2px;
+}
+
+/* ---- Skill type */
+.skill_offensive .skill_icon {
+  background-color: firebrick;
+}
+
+.skill_defensive .skill_icon {
+  background-color: #2254b2;
+}
+
+.skill_support .skill_icon {
+  background-color: #22b23a;
+}
+
+/* ---- Skill icon */
+.skill_icon {
+  height: 100%;
+  max-width: 10%;
+  border-right: rgba(6, 7, 13, 0.9) solid 2px;
+}
+
+/* ---- Skill name */
+.skill_name {
+  box-sizing: content-box;
+  width: 15%;
+}
+
+/* ---- Skill description */
+.skill_info {
+  width: 75%;
+  font-size: 0.8em;
+}
+
+/* ---- Skill cost */
+.skill_cost_stamina, .skill_cost_magicka{
+  width: 5%;
+  padding-right: 1em;
+  text-align: right;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
+
+.skill_cost_stamina {
+  background-image: url("../img/icons/stats/stamina.png");
+}
+
+.skill_cost_magicka {
+  background-image: url("../img/icons/stats/magicka.png");
+}
+
+/* ---- Skill multiplier */
+.skill_multiplier_agility, .skill_multiplier_intellect, .skill_multiplier_strength {
+  width: 5%;
+  padding-right: 1em;
+  text-align: right;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+}
+
+.skill_multiplier_strength {
+  background-image: url("../img/icons/stats/stamina.png");
+}
+
+.skill_multiplier_agility {
+  background-image: url("../img/icons/stats/stamina.png");
+}
+
+.skill_multiplier_intellect {
+  background-image: url("../img/icons/stats/stamina.png");
+}
+
+/* -- Logs */
+.logs {
+  padding: 0 1%;
+  border-left: rgba(6, 7, 13, 0.9) solid 3px;
+  background-color: rgba(0, 0, 0, 0.9);
+  font-size: 0.7em;
+  width: 40%;
+  height: 100%;
+  overflow: auto;
+}
+
+.logs p {
+  text-shadow: 1px 1px 1px #000;
+  margin-top: 2.5%;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+span {
+  font-size: 1em;
+}
+
+/* --- Color logs */
+.player_dodge, .enemy_miss, .player_hit  {
+  color: white;
+}
+
+.player_hit_critical  {
+  color: #4dff4b;
+}
+
+.player_miss {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.enemy_hit_critical {
+  color: #ff4a1c;
+}
+
+.enemy_hit  {
+  color: #FF1919;
+}

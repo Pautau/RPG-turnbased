@@ -1,0 +1,138 @@
+/*
+    Color palette : https://coolors.co/f82525-f8f825-f8ab25-25f825-2525f8
+ */
+
+@font-face {
+    font-family: 'kingthings_petrockregular';
+    src: url('../../font/kingthingspetrock_regular_macroman/Kingthings_Petrock-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'florante_at_lauraregular';
+    src: url('../../font/floranteatlaura_regular_macroman/FLORLRG_-webfont.eot');
+    src: url('../../font/floranteatlaura_regular_macroman/FLORLRG_-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../font/floranteatlaura_regular_macroman/FLORLRG_-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+* {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: 'kingthings_petrockregular', -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-decoration: none;
+    color: rgba(6, 3, 2, .9);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-color: #222222;
+
+}
+
+.development {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    color: rgba(23, 24, 24, .8);
+    text-shadow: none;
+}
+
+.bg_img {
+    background-image: url("../../img/bg/bg1.jpg");
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main_menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 60%;
+    min-width: 400px;
+    max-width: 500px;
+    height: 80%;
+    min-height: 350px;
+    background-image: url("../../img/ui/scroll.png");
+    background-size: 100% 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-family: 'florante_at_lauraregular',-apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";;
+    width: 50%;
+    padding: 3px;
+    margin: 12.5% 0 10%;
+    font-size: 2em;
+    font-weight: normal;
+    text-align: center;
+}
+
+button {
+    text-align: left;
+    position: relative;
+    border: none;
+    background: none;
+    height: 25px;
+    width: 40%;
+    margin-bottom: 2.5%;
+    font-size: 1.5em;
+    font-weight: normal;
+    color: rgba(6, 3, 2, .7);
+}
+
+button:hover {
+    color: rgba(6, 3, 2, .9);
+}
+
+button:active {
+    font-size:calc(2px + 1em);
+}
+
+i {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 10%;
+    font-size: 1em;
+    text-align: left;
+    color: rgba(6, 3, 2, 0);
+    animation: arrow 200ms infinite linear alternate;
+    z-index: 1;
+}
+
+i:hover {
+    color: rgba(6, 3, 2, .9);
+    visibility: visible;
+}
+
+@keyframes arrow {
+    0% {
+        transform: translateX(0px)
+    }
+    100% {
+        transform: translateX(5px)
+    }
+}
+
+
+

@@ -1,0 +1,91 @@
+/*
+    Color palette : https://coolors.co/f82525-f8f825-f8ab25-25f825-2525f8
+ */
+
+/*@font-face {
+    font-family: 'kingthings_calligraphica_2Rg';
+    src: url('../font/kingthingscalligraphica_regular_macroman/Kingthings_Calligraphica_2-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'kingthings_exeterregular';
+    src: url('../font/kingthingsexeter_regular_macroman/Kingthings_Exeter-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+@font-face {
+    font-family: 'kingthings_petrockregular';
+    src: url('../../font/kingthingspetrock_regular_macroman/Kingthings_Petrock-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: 'kingthings_petrockregular', -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-decoration: none;
+    color: #D2DADA;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    background-color: #222222;
+    text-shadow: 1px 1px 1px #000;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display: inline;
+}
+
+.development {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    color: rgba(23, 24, 24, .8);
+    text-shadow: none;
+}
+
+.bg_img {
+    background-image: url("../../img/bg/bg1.jpg");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* CONTAINER */
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    min-width: 600px;
+    max-width: 1100px;
+    height: 80%;
+    min-height: 230px;
+    box-sizing: border-box;
+    border: rgb(22, 22, 22) solid 3px;
+    border-radius: 6px 6px 0 0;
+}

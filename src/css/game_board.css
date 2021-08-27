@@ -1,0 +1,682 @@
+/*
+    Color palette : https://coolors.co/f82525-f8f825-f8ab25-25f825-2525f8
+ */
+
+@font-face {
+    font-family: 'kingthings_petrockregular';
+    src: url('../../font/kingthingspetrock_regular_macroman/Kingthings_Petrock-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: 'kingthings_petrockregular', -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-decoration: none;
+    color: #D2DADA;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    text-shadow: 1px 1px 1px #000;
+}
+
+button:active,
+button:focus {
+    border: none;
+    outline: 0;
+}
+
+.development {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    color: rgba(23, 24, 24, .8);
+    text-shadow: none;
+}
+
+.bg_img {
+    background-image: url("../../img/bg/bg1.jpg");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* CONTAINER */
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    min-width: 600px;
+    max-width: 1100px;
+    height: 80%;
+    min-height: 230px;
+}
+
+/* LOGS - Where the text of the combat is written */
+.logs_background {
+    box-sizing: border-box;
+    border: rgb(22, 22, 22) solid 3px;
+    border-radius: 6px 6px 0 0;
+    background-image: url("../../img/bg/bg1.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 77.5%;
+    width: 100%;
+}
+
+.options {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    padding: 0 0 1px 1px;
+    background-image: url("../../img/ui/black_mist.png"), url("../../img/ui/solid_stone.jpg");
+    top: 0;
+    right: 0;
+    border-radius: 0 0 0 2px;
+}
+
+.options img {
+    height: 100%;
+    transition: all 500ms ease-in;
+}
+
+.options img:hover {
+    transform: rotate(180deg);
+}
+
+.logs {
+    height: 108px;
+    overflow: auto;
+    scrollbar-color: #534e48 rgba(0, 0, 0, 0.5);;
+    scrollbar-width: thin;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+/* Each paragraph displays information about what happened
+    Example: "[Player - Attack] You slash Monster for 10 damage"
+ */
+.logs p {
+    font-size: 0.9em;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 100ms ease-in;
+    white-space: nowrap;
+}
+
+@keyframes add {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 100%;
+        height: 19px;
+    }
+}
+
+.logs p:first-child {
+    animation: highlight 1s 1s infinite alternate, add 1s;
+    font-size: 0.95em;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: rgba(0, 0, 0, 0.5);
+
+    }
+    100% {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+}
+
+.turn_details{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logs p:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* TURN_DETAILS - Located inside each paragraph, is used to display additional information
+    Example: "[Player - Attack]"
+*/
+.turn_details{
+    padding: 1px 1%;
+    display: inline-block;
+
+    width: 7em;
+}
+
+/* COMBAT_DESC - Locaded inside each paragraph, is used to display important information
+    Example: "You slash Monster for 10 damage"
+ */
+.combat_desc {
+    padding: 0 1%;
+}
+
+/* Each class below are used to colour the content inside "turn_info" class
+    Example : [Enemy - Offensive] will be red
+ */
+.player_dodge, .enemy_miss, .player_Offensive, .player_Defensive {
+    color: #f9f9f9;
+    border-left: #FF1919 solid 3px;
+}
+
+.player_critical{
+    border-left: #ff4d02 solid 3px;
+}
+
+.player_Support  {
+    border-left: #4dff4b solid 3px;
+    color: #4dff4b;
+}
+
+.player_Miss {
+    border-left: rgba(255, 255, 255, 0.5) solid 3px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.enemy_Offensive, .enemy_Support, .enemy_Defensive{
+    border-left: #FF1919 solid 3px;
+    color: #FF1919;
+}
+
+/* CHARACTERS_INFOS - Displays vitals information (health, stamina and mana) plus the portrait of each character
+        + the combat menu between both characters
+*/
+.characters_infos{
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
+    min-height: 60px;
+    width: 100%;
+    border-radius: 0 0 6px 6px;
+}
+
+/* COMBAT_MENU - Displays the combat's menu with 4 buttons. */
+.combat_menu {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../img/ui/solid_stone.jpg");
+    height: 100%;
+}
+
+.combat_button:not([disabled]) i {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    left: 2%;
+    color: rgba(255, 255, 255, 0);
+    animation: arrow 200ms infinite linear alternate;
+    z-index: auto;
+}
+
+.combat_button:not([disabled]) i:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.combat_button[disabled] i {
+    color: rgba(255, 255, 255, 0);
+}
+
+.combat_button[disabled] {
+    color: rgba(22, 22, 22, 0.51);
+}
+
+@keyframes arrow {
+    0% {
+        transform: translateX(0px)
+    }
+    100% {
+        transform: translateX(5px)
+    }
+}
+
+.combat_menu button {
+    position: relative;
+    height: 25%;
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    background: none;
+    font-size:calc(2px + 0.8vw);
+}
+
+.combat_menu:not([disabled]){
+    color: rgba(255, 255, 255, 0.5);
+    transition: 50ms color ease-in;
+}
+
+.combat_menu[disabled]{
+    color: rgba(22, 22, 22, 0.5);
+}
+
+.combat_menu div {
+    background-image: url("../../img/ui/black_mist.png"), url("../../img/ui/solid_stone.jpg");
+    background-size: cover;
+    text-align: center;
+    height: 25%;
+    width: 100%;
+    font-size:calc(3px + 0.8vw);
+}
+
+.turn_info {
+    text-align: center;
+    animation: grow 0.5s infinite linear alternate;
+}
+
+@keyframes grow {
+    100%{
+        font-size: 1.1em;
+    }
+}
+.combat_button:not([disabled]):hover{
+    color: #f9f9f9;
+    text-shadow: 1px 1px 1px #000;
+}
+
+.combat_menu  *:not(:last-child) {
+    border-bottom: rgb(22, 22, 22) solid 2px;
+}
+
+.combat_menu  button:last-child {
+    border-bottom: rgb(22, 22, 22) solid 3px;
+}
+
+.combat_button:not([disabled]):active {
+    font-size:calc(3px + 0.8vw);
+}
+
+
+/* INFOS_CHARACTER - A container which contains vitals information (health, stamina and mana) plus the portrait of a character */
+.character_infos{
+    display: flex;
+    height: 100%;
+    width: 45%;
+    min-width: 275px;
+    padding: 0 5px 0 5px;
+    align-items: center;
+    border: rgb(22, 22, 22) solid 3px;
+    border-top: none;
+    border-radius: 0 0 0 6px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../img/ui/black_mist.png"), url("../../img/ui/solid_stone.jpg");
+}
+
+.enemy_infos {
+    display: flex;
+    flex-direction: row-reverse;
+    border-radius: 0 0 6px 0;
+    /* assombri l'arrière plan */
+}
+
+.portrait {
+    height: 90%;
+    box-sizing: border-box;
+    transition: all 50ms ease-in;
+    border-width: 5px;
+    border-style: solid;
+}
+
+.portrait:hover {
+    border-width: 3px;
+    border-style: solid;
+    cursor: help;
+}
+
+.enemy_portrait {
+    border-image: url("../../img/ui/solid_bloodstone.jpg") 300;
+}
+
+.player_portrait {
+    border-image: url("../../img/ui/lava.jpg") 300;
+    animation-name: frame_animate ;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-timing-function: linear
+}
+
+@keyframes frame_animate {
+    0% { border-image: url("../../img/ui/lava.jpg") 300; }
+    100% { border-image: url("../../img/ui/lava.jpg") 50; }
+}
+
+
+/* VITALS - Displays vitals information only (health, stamina and mana) of a character */
+.vitals {
+    box-sizing: border-box;
+    width: 70%;
+    padding-left: 1em;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enemy_vitals {
+    margin-left: 0;
+    margin-right: 1em;
+}
+
+/* VITAL - Used to display the health, stamina and mana bar
+    EXAMPLE: "64/100"
+*/
+.vital {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 10px;
+    height: 30%;
+    font-size: 1em;
+}
+
+.health {
+    height: 40%;
+}
+
+.stamina {
+    margin: 2px 0 2px 0;
+}
+
+/* LABEL_VITAL - Displays the name of the stat */
+.label_vital {
+    width: 60px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: rgba(6, 7, 13, 1) solid 2px;
+    border-radius: 6px 0 0 6px;
+    background-size: cover;
+    background-image: url("../../img/ui/solid_stone.jpg");
+}
+
+/* INT_VITAL - Displays the health, stamina or mana left inside its respective bar
+    Example : "55/100 | 55%"
+ */
+.int_vital {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    font-size: 0.8em;
+}
+
+
+/* MAX_* - Is used to display each bar, the difference with the "CURRENT_*" class is that it will remains the same size. */
+.max_bar {
+    position: relative;
+    box-sizing: border-box;
+    border: rgba(6, 7, 13, 1) solid 2px;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    background-color: rgba(6, 7, 13, .5);
+    height: 100%;
+    width: 100%;
+}
+
+/* CURRENT_* - Used to display the current health, mana or stamina of a character, there are located inside their respective MAX_BAR. */
+.current_bar {
+    transition: all 100ms ease-in;
+    border-radius: 0 3px 3px 0;
+}
+
+.current_health, .vital_health {
+    height: 100%;
+    background-color: rgba(248, 37, 37, .6);
+}
+
+.current_mana, .vital_mana {
+    height: 100%;
+    background-color: rgba(37, 37, 248, .6);
+}
+
+.current_stamina, .vital_stamina {
+    height: 100%;
+    background-color: rgba(248, 248, 37, .6);
+}
+
+
+/* SKILLS - Display all the skills slotted of the player */
+.skills {
+    /* remove the extra space caused by the padding */
+    position: relative;
+    bottom: calc(12.5% - 3px);
+    height: calc(12.5% - 3px);
+    display: flex;
+    border-collapse:separate;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../../img/ui/black_mist.png"), url("../../img/ui/solid_stone.jpg");
+    border: rgb(22, 22, 22) solid 3px;
+    border-top: none;
+    outline: 5px;
+    border-radius: 0 0 7px 7px;
+    padding: 5px;
+    z-index: 1;
+    transition: all 250ms ease-out;
+}
+
+.skills:hover {
+    bottom: 0;
+}
+
+.skillsBarLabel{
+    position: absolute;
+    top: calc(100% + 2px);
+    width: 60px;
+    background: inherit;
+    background-size: cover;
+    background-image: url("../../img/ui/solid_stone.jpg");
+    text-shadow: 1px 1px 1px #000;
+    border: rgb(22, 22, 22) solid 2px;
+    box-sizing: border-box;
+    border-radius: 0 0 6px 6px;
+    border-top: none;
+    font-size:calc(3px + 0.8vw);
+    text-align: center;
+    padding: 2px 5px;
+}
+
+.skill {
+    height: 100%;
+    transition:
+            transform 10ms ease-in,
+            box-shadow 75ms ease-out,
+            background-color 75ms ease-in;
+}
+
+img {
+    background-size: contain;
+}
+
+.skills img:not(:last-child) {
+    margin-right: 0.25vw;
+}
+
+.skill:not([disabled]):active {
+    transform: scale(0.9);
+}
+
+.skill_Support:not([disabled]) {
+
+}
+
+.skill_Support:not([disabled]):hover, .details .skill_Support{
+    box-shadow: 0 0 5px 0 rgba(126, 211, 33, .9);
+    background-color: #7ED321;
+}
+
+.skill_Offensive:not([disabled]) {
+    background-color: rgba(255, 33, 28, .1);
+}
+
+.skill_Offensive:hover:not([disabled]) {
+    box-shadow: 0 0 5px 0 rgba(255, 33, 28, .9);
+    background-color: #ff211c;
+}
+
+.skill_Defensive:not([disabled]) {
+    background-color: rgba(72, 186, 255, .1);
+}
+
+.skill_Defensive:hover:not([disabled]) {
+    box-shadow: 0 0 5px 0 rgba(72, 186, 255, .9);
+    background-color: #48BAFF;
+}
+/* DETAILS */
+/* Informations : */ /*
+    - Sera utilisé pour afficher les informations relatives à un élement ciblé (compétences ou personnage)
+    - Pour les compétences, les informations affichées seront :
+        - Son coût
+        - Ses dégâts et/ou soins
+        - Son type (support, dégâts, défense)
+        - Une breve description
+    - Pour les personnages, les informations affichées seront :
+        - Son nom
+        - Sa vie
+        - Son endurance et/ou magie
+        - Une breve description
+    */
+
+.details {
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-position: center;
+    background-image: url("../../img/ui/solid_stone.jpg");
+    border-left: rgb(22, 22, 22) solid 3px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 30%;
+    right: 0;
+    transition: all 200ms ease-in;
+}
+
+.details_name {
+    width: 100%;
+    text-align: center;
+    background-image: url("../../img/ui/black_mist_light.png");
+    font-size: calc(1em + 2vh);
+    border-bottom: rgb(22, 22, 22) solid 2px;
+    flex: 1;
+}
+
+.details-top{
+    padding: 5px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background-image: url("../../img/ui/black_mist.png");
+    text-align: center;
+    border-bottom: rgb(22, 22, 22) solid 3px;
+    flex: 3;
+}
+
+.details_icon[data-type = 'Support'] {
+    box-shadow: 0 0 5px 0 rgba(126, 211, 33, .9);
+    background-color: rgba(126, 211, 33, 0.8);
+}
+
+.details_icon[data-type = 'Offensive'] {
+    box-shadow: 0 0 5px 0 rgba(255, 33, 28, .9);
+    background-color: rgba(255, 33, 28, 0.8);
+}
+
+.details_icon[data-type = 'Defensive'] {
+    box-shadow: 0 0 5px 0 rgba(72, 186, 255, .9);
+    background-color: rgba(72, 186, 255, 0.8);
+}
+
+.details_icon {
+    box-shadow: 0 0 5px 0 rgb(0, 0, 0);
+    border: rgb(22, 22, 22) solid 1px;
+    height: 10vh;
+    width: 10vh;
+}
+
+.details_detailed{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 10;
+}
+
+.details_detailed_label {
+    text-align: center;
+    background-image: url("../../img/ui/black_mist_light.png");
+    font-size: calc(1em + 1vh);
+    border-bottom: rgb(22, 22, 22) solid 2px;
+}
+
+/* Is used for skill's informations. */
+.vitals_costs {
+    background-image: url("../../img/ui/black_mist.png");
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+    padding: 5px 0;
+    font-size: calc(0.5em + 0.7vh);
+    border-bottom: rgb(22, 22, 22) solid 3px;
+}
+
+.vital_cost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    flex: 1;
+}
+
+.vital_cost img {
+    box-shadow: 0 0 2px 0 rgb(0, 0, 0);
+    border: rgb(22, 22, 22) solid 1px;
+}
+
+.details_skill_desc {
+    padding: 5px 0;
+    text-align: center;
+    background-image: url("../../img/ui/black_mist.png");
+    height: 100%;
+}
